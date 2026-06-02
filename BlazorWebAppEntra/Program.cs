@@ -47,9 +47,9 @@ builder.AddServiceDefaults();
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(msIdentityOptions =>
     {
-        msIdentityOptions.CallbackPath = "/signin-oidc";
-        msIdentityOptions.Authority = "https://myobintegrationcustomers.ciamlogin.com/0dcb505d-c3a8-4a5e-945f-e900363cf2b6/v2.0";
-        msIdentityOptions.ClientId = "bb47349e-e638-4a37-a082-fd2137bee380";
+        msIdentityOptions.CallbackPath = builder.Configuration["AzureAd:CallbackPath"];
+        msIdentityOptions.Authority = builder.Configuration["AzureAd:Instance"] + builder.Configuration["AzureAd:TenantId"];
+        msIdentityOptions.ClientId = builder.Configuration["AzureAd:ClientId"];
         msIdentityOptions.ResponseType = "code";
     })
     .EnableTokenAcquisitionToCallDownstreamApi()
