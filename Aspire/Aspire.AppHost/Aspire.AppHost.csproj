@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorWebAppEntra\BlazorWebAppEntra.csproj" />
     <ProjectReference Include="..\..\MinimalApiJwt\MinimalApiJwt.csproj" />
+    <ProjectReference Include="..\..\WebAppBff\WebAppBff.csproj" />
   </ItemGroup>
 
   <ItemGroup>
