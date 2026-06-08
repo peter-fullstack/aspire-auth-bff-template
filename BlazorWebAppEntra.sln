@@ -17,6 +17,10 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WebClient", "WebClient\WebC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppBFF", "WebAppBFF\WebAppBFF.csproj", "{84A1BAB8-BC87-0951-8006-2BD555BED7F6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorApp", "BlazorApp", "{69EC2FA5-3FC5-43A3-9471-410702F76D60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReactApp", "ReactApp", "{DC084889-69E2-4A77-8911-6EF08B3D0C86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +106,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7588C04C-A91C-46AA-A161-6441DDA6D1C8} = {69EC2FA5-3FC5-43A3-9471-410702F76D60}
+		{DCAFB651-B1C8-48F1-AC85-0221F7378DDA} = {69EC2FA5-3FC5-43A3-9471-410702F76D60}
+		{0AC2B235-1BFD-4669-BB24-D67B18DB7DC9} = {DC084889-69E2-4A77-8911-6EF08B3D0C86}
+		{84A1BAB8-BC87-0951-8006-2BD555BED7F6} = {DC084889-69E2-4A77-8911-6EF08B3D0C86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BB58BC-6E37-4456-BCDB-80A7CE694BAD}

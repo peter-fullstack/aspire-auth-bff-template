@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.Authority = builder.Configuration["AzureAd:Instance"] + builder.Configuration["AzureAd:TenantId"];
         options.ClientId = builder.Configuration["AzureAd:ClientId"];
+        options.ClientSecret = builder.Configuration["AzureAd:ClientSecret"];
         options.CallbackPath = builder.Configuration["AzureAd:CallbackPath"];
         options.ResponseType = "code";
         options.SaveTokens = true;
@@ -47,6 +49,24 @@ app.UseAuthorization();
 app.MapReverseProxy();
 
 app.Run();
+
+// 1. Endpoint for the React app to determine if the user is logged in
+app.MapGet("/bff/user/status", (ClaimsPrincipal user) =>
+{
+    if (user.Identity?.IsAuthenticated ?? false)
+    {
+        return Results.Ok(new
+        {
+            isAuthenticated = true,
+            username = user.Identity.Name,
+            roles = user.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value)
+        });
+    }
+
+    // Return a clean payload instead of a 401, so the frontend can handle it smoothly
+    return Results.Ok(new { isAuthenticated = false });
+})
+.AllowAnonymous();
 
 app.MapGet("/bff/login", () => 
 {
