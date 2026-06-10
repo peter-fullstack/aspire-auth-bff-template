@@ -12,6 +12,8 @@ export type AuthContextData = {
   loadingUserData: boolean
   authError: string | null
   checkAuthStatus: () => Promise<void>
+  login: () => void
+  signOut: () => void
 }
 
 const AuthContext = createContext({} as AuthContextData)
